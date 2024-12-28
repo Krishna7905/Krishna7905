@@ -23,6 +23,7 @@ let oTurn;
 let xWins = 0;
 let oWins = 0;
 let draws = 0;
+let gameActive;
 
 startGame();
 
@@ -30,6 +31,7 @@ restartButton.addEventListener('click', startGame);
 
 function startGame() {
     oTurn = false;
+    gameActive = true;
     cellElements.forEach(cell => {
         cell.classList.remove(X_CLASS);
         cell.classList.remove(O_CLASS);
@@ -42,6 +44,7 @@ function startGame() {
 }
 
 function handleClick(e) {
+    if (!gameActive) return;
     const cell = e.target;
     const currentClass = oTurn ? O_CLASS : X_CLASS;
     placeMark(cell, currentClass);
@@ -56,6 +59,7 @@ function handleClick(e) {
 }
 
 function endGame(draw) {
+    gameActive = false;
     if (draw) {
         messageElement.textContent = "Draw!";
         draws++;
