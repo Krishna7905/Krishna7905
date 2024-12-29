@@ -7,41 +7,89 @@
 }
 
 body {
-    background: linear-gradient(to right, #ec3939, #f7f7f7);
-    color: #1b1b1b;
+    background: linear-gradient(to right, #049191, #e2e2e2);
+    color: #333;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 header {
     background-color: #333;
     color: white;
     padding: 1em 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(179, 116, 116, 0.1);
+    margin-bottom: 2em;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+header:hover {
+    background-color: #555;
 }
 
 footer {
     background-color: #333;
     color: white;
     padding: 1em 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2em;
+    transition: all 0.3s ease;
+}
+
+footer:hover {
+    background-color: #555;
 }
 
 h1 {
     margin-bottom: 1em;
+    font-size: 2.5em;
+    animation: fadeIn 1s ease-in-out;
+    transition: color 0.3s ease;
+}
+
+h1:hover {
+    color: #ff6347;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .game-container {
-    max-width: 400px;
+    max-width: 500px;
     margin: 2em auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: slideIn 1s ease-in-out;
+    padding: 1em;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
+    gap: 10px;
     background: #333;
-    padding: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .cell {
@@ -53,28 +101,53 @@ h1 {
     align-items: center;
     font-size: 3em;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cell:hover {
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
+    transform: scale(1.05);
 }
 
 .cell.x {
-    color: #3337f7;
+    color: #ff6347;
 }
 
 .cell.o {
-    color: #9345c0;
+    color: #333;
 }
 
 .message {
     margin: 1em 0;
     font-size: 1.5em;
+    color: #a32c17;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .scorecard {
     margin: 1em 0;
+    background: #fff;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.scorecard:hover {
+    background-color: #f0f0f02c;
+}
+
+.scorecard h2 {
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+.scorecard p {
+    margin: 0.5em 0;
+    font-size: 1.2em;
+    color: #666;
 }
 
 button {
@@ -85,16 +158,19 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 1em;
 }
 
 button:hover {
-    background-color: #708819;
+    background-color: #22e6a4;
+    color: #333;
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
     .board {
-        gap: 3px;
+        gap: 5px;
     }
 
     .cell {
