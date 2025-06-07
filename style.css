@@ -1,190 +1,142 @@
-/* Global Styles */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Body & Container */
 body {
-    background: linear-gradient(to right, gold, blue);
-    color: #050505;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #e0e6f8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  user-select: none;
 }
 
-header {
-    background: linear-gradient(to right, #ffdbbb, #496580);
-    color: white;
-    padding: 1em 0;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(32, 228, 107, 0.774);
-    margin-bottom: 2em;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
+.container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  backdrop-filter: blur(12px);
 }
 
-header:hover {
-    background: linear-gradient(to right,#496580, #ffdbbb );
-    /* transition-duration: 5s; */
+/* Header */
+header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
 }
 
-footer {
-    background-color: #7a0b9c;
-    color: white;
-    padding: 1em 0;
-    width: 100%;
-    box-shadow: 0 -4px 8px rgba(211, 71, 71, 0.616);
-    margin-top: 2em;
-    transition: all 0.3s ease;
+/* Info & Message */
+.info p {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
 }
 
-footer:hover {
-    background-color: #180a94;
-}
-
-h1 {
-    margin-bottom: 1em;
-    font-size: 2.5em;
-    animation: fadeIn 1s ease-in-out;
-    transition: color 0.3s ease;
-}
-
-h1:hover {
-    color: #ca7310;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.game-container {
-    max-width: 500px;
-    margin: 2em auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: slideIn 1s ease-in-out;
-    padding: 1em;
-    border-radius: 10px;
-    border: none;
-    /* background: white; */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes slideIn {
-    from { transform: translateY(-20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
+/* Board */
 .board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    /* background: #333; */
-    background: transparent;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 4px 15px rgba(10, 157, 255, 0.74);
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  gap: 20px;
+  justify-content: center;
+  margin: 1rem 0 2rem 0;
+  perspective: 900px;
 }
 
+/* Cell */
 .cell {
-    width: 100px;
-    height: 100px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    border-radius: 15px;
-    box-shadow: 0 2px 8px #a304ca; 
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow:
+    8px 8px 15px rgba(0,0,0,0.6),
+    -8px -8px 15px rgba(255,255,255,0.1);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: transparent;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  user-select: none;
 }
 
+/* Hover tilt */
 .cell:hover {
-    background-color: #e0e0e0c0;
-    transform: scale(1.05);
+  transform: rotateX(8deg) rotateY(8deg);
 }
 
-.cell.x {
-    color: #1a45bb;
+/* Flipped state */
+.cell.flipped {
+  color: #0ff;
+  transform: rotateY(180deg);
+  box-shadow:
+    inset 4px 4px 15px rgba(0, 255, 255, 0.8),
+    0 0 20px #0ff;
 }
 
-.cell.o {
-    color: #ad0f98;
+.cell.flipped.o {
+  color: #ff4081;
+  box-shadow:
+    inset 4px 4px 20px rgba(255, 64, 129, 0.9),
+    0 0 30px #ff4081;
 }
 
-.message {
-    margin: 1em 0;
-    font-size: 2em;
-    color: #060461;
-    animation: fadeIn 1s ease-in-out;
+/* Scoreboard */
+.score {
+  color: #ccc;
+  font-size: 1.1rem;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  user-select: none;
 }
 
-.scorecard {
-    margin: 1em 0;
-    background: linear-gradient(to right,#00203fff, #adefd1ff );
-    padding: 1em;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+.score h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #0ff;
+  text-shadow: 0 0 6px #0ff;
 }
 
-.scorecard:hover {
-    background-color: orange;
+.score p {
+  margin-bottom: 0.3rem;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
-.scorecard h2 {
-    margin-bottom: 0.5em;
-    color: #242323;
+/* Footer */
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #555;
+  text-shadow: none;
 }
 
-.scorecard p {
-    margin: 0.5em 0;
-    font-size: 1.2em;
-    color: black;
-}
+/* Responsive */
+@media (max-width: 480px) {
+  .board {
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 15px;
+  }
 
-button {
-    padding: 1em 2em;
-    font-size: 1em;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 1em;
-}
-
-button:hover {
-    background-color: #1ab85b;
-    color: #333;
-    transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-    .board {
-        gap: 5px;
-    }
-
-    .cell {
-        width: 80px;
-        height: 80px;
-        font-size: 2em;
-    }
-
-    button {
-        width: 100%;
-        box-sizing: border-box;
-    }
+  .cell {
+    font-size: 3.5rem;
+  }
 }
