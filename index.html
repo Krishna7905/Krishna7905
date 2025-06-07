@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe Game</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KrishnaG || Tic-Tac-Toe Game</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+  <div class="container">
     <header>
-        <h1>KrishnaG Games </h1>
+      <h1>Tic-Tac-Toe</h1>
     </header>
     <main>
-        <h1>Tic-Tac-Toe Game</h1>
-        <div class="game-container">
-            <div class="board" id="board">
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-                <div class="cell" data-cell></div>
-            </div>
-            <div class="message" id="message"></div>
-            <div class="scorecard">
-                <h2>Scorecard</h2>
-                <p>X Wins: <span id="xWins">0</span></p>
-                <p>O Wins: <span id="oWins">0</span></p>
-                <p>Draws: <span id="draws">0</span></p>
-            </div>
-            <button id="restartButton">Restart Game</button>
-        </div>
+      <div class="info">
+        <p id="turnIndicator">Turn: ❌ </p>
+        <p id="message"></p>
+      </div>
+      <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <div class="score">
+        <h2>Scoreboard</h2>
+        <p>❌ X Wins: <span id="xScore">0</span></p>
+        <p>⭕ O Wins: <span id="oScore">0</span></p>
+        <p>🤝 Draws: <span id="drawScore">0</span></p>
+      </div>
     </main>
     <footer>
-        <p>&copy; 2024 Tic-Tac-Toe Game. All rights reserved.</p>
+      <p>&copy; 2024 KrishnaG Games</p>
     </footer>
-    <script src="script.js"></script>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
